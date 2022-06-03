@@ -1,0 +1,20 @@
+query CategoryPage($url: String!, $rootCategory: String!) {
+  ...MenuQueryFragment
+  ...FooterQueryFragment
+  ...PageContentQueryFragment
+
+  ...CategoryQueryFragment
+
+  # Change query category
+  categories(filters: { url_path: { eq: $url } }) {
+    items {
+      uid
+      children_count
+      ...CategoryBreadcrumb
+      ...CategoryDescription
+      ...CategoryChildren
+      ...CategoryMeta
+      ...CategoryHeroNav
+    }
+  }
+}
